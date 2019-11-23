@@ -1,4 +1,4 @@
-package projeto.professor;
+package projeto.professor.negocio;
 
 public class QuartoFamilia extends Quarto{
 	

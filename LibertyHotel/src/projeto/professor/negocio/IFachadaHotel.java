@@ -1,4 +1,4 @@
-package projeto.professor;
+package projeto.professor.negocio;
 
 import java.util.Collection;
 import java.util.Date;

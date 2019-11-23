@@ -1,15 +1,26 @@
-package projeto.professor;
+package projeto.professor.negocio;
 
 import java.util.Collection;
-import java.util.Date;
 
-public class FachadaHotel implements IFachadaHotel {
+import exercicio.LogSingleton;
 
-	private RepositorioHotel repositorioHotel;
-	private RepositorioQuarto repositorioQuarto;
+public class ControladorHotel {
+
+	private static ControladorHotel instance;
 	
+	private ControladorHotel () {
+		
+	}
 	
-	@Override
+	public static ControladorHotel getInstance() {
+		
+		if(instance == null) {
+			instance = new ControladorHotel();
+		}
+		
+		return instance;
+	}
+	
 	public Hotel cadastrarHotel(String nome, String endereco,EnumClasseHotel classeHotel) {
 		IFabricaClasse fabricaHotel = null;
 		
@@ -27,8 +38,7 @@ public class FachadaHotel implements IFachadaHotel {
 		repositorioHotel.cadastrarHotel(hotel);
 		return hotel;
 	}
-
-	@Override
+	
 	public Quarto cadastrarQuarto(Integer numero, Integer limHospedes, Boolean ehFumante, Double valor,
 			String descricao, EnumTipoQuarto tipoQuarto) {
 
@@ -42,30 +52,11 @@ public class FachadaHotel implements IFachadaHotel {
 			fabricaQuarto = new QuartoFamilia();
 		} 
 		
-		Hotel hotel = fabricaHotel.criarHotel(nome, endereco);
+		Quarto quarto = fabricaQuarto.criarQuarto(numero, limHospedes, ehFumante, valor, descricao, tipoQuarto);
 		
-		repositorioHotel.cadastrarHotel(hotel);
-		return hotel;
-	}
-
-	@Override
-	public Quarto pesquisarQuarto(Integer limHospedes, Date dataInicio, Date dataFim) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<Quarto> listaQuartosDisponiveis(Date dataInicio, Date dataFim) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Double calcularValorQuarto(Double valor) {
-		// TODO Auto-generated method stub
-		return null;
+		repositorioQuarto.cadastrarQuarto(quarto);
+		return quarto;
 	}
 	
-
-
+	
 }

@@ -1,4 +1,4 @@
-package projeto.professor;
+package projeto.professor.negocio;
 
 import java.util.ArrayList;
 import java.util.Collection;
